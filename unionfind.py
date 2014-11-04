@@ -51,11 +51,13 @@ class UnionFindSimpleImpl:
         """
         return self[item]
     
-    def union(self, leader_a, leader_b):
+    def union(self, item_a, item_b):
         """
-        Joins together the two clusters that items leader_a 
-        and leader_b represent.
+        Joins together the two clusters that items item_a and item_b 
+        belong to.
         """
+        leader_a = self._leader[item_a]
+        leader_b = self._leader[item_b]
         if leader_a == leader_b:
             return
         if self._cluster_size[leader_b] > self._cluster_size[leader_a]:
