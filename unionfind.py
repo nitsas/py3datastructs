@@ -82,6 +82,22 @@ class UnionFindSimpleImpl:
         """Returns the current number of clusters."""
         return len(self._cluster_size)
     
+    def clusters(self):
+        """
+        Return all clusters as a (real-time) dictview of lists.
+        
+        Caution: 
+        The result is a real-time view of the clusters, i.e. if one first
+        calls this method to get a clusters_view object and then merges two
+        clusters, the original clusters_view object will reflect the change.
+        
+        One can use list(myunionfindobject.clusters()) if they want a list of 
+        lists. BUT this is even more dangerous if there are more unions to 
+        come, because some of the inner lists of the result will change or
+        stop being valid after a union operation.
+        """
+        return self._followers.values()
+    
     def items(self):
         """Returns a set containing all the items in the structure."""
         return self._items
