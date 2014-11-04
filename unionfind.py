@@ -67,6 +67,15 @@ class UnionFindSimpleImpl:
         self._cluster_size[leader_A] += self._cluster_size[leader_B]
         del(self._cluster_size[leader_B])
     
+    def joined(self, item_a, item_b):
+        """
+        Return True it the items belong to the same cluster; False otherwise.
+        """
+        if self.find(item_a) == self.find(item_b):
+            return True
+        else:
+            return False
+    
     def num_clusters(self):
         """Returns the current number of clusters."""
         return len(self._cluster_size)
