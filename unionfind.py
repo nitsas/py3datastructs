@@ -34,8 +34,8 @@ class UnionFindSimpleImpl:
     
     def __getitem__(self, item):
         """
-        Returns the cluster (i.e. the cluster's leader) that the 
-        given item belongs to.
+        Return the cluster (i.e. the cluster's leader) that the given item 
+        belongs to.
         
         Equivalent to UnionFindStructure.find().
         """
@@ -44,8 +44,8 @@ class UnionFindSimpleImpl:
     
     def find(self, item):
         """
-        Returns the cluster (i.e. the cluster's leader) that the 
-        given item belongs to.
+        Return the cluster (i.e. the cluster's leader) that the given item 
+        belongs to.
         
         Equivalent to UnionFindStructure.__getitem__().
         """
@@ -53,7 +53,7 @@ class UnionFindSimpleImpl:
     
     def union(self, item_a, item_b):
         """
-        Joins together the two clusters that items item_a and item_b 
+        Join together the two clusters that items item_a and item_b 
         belong to.
         """
         leader_a = self._leader[item_a]
@@ -79,7 +79,7 @@ class UnionFindSimpleImpl:
             return False
     
     def num_clusters(self):
-        """Returns the current number of clusters."""
+        """Return the current number of clusters as an int."""
         return len(self._cluster_size)
     
     def clusters(self):
@@ -99,7 +99,7 @@ class UnionFindSimpleImpl:
         return self._followers.values()
     
     def items(self):
-        """Returns a set containing all the items in the structure."""
+        """Return a set containing all the items in the structure."""
         return self._items
 
 
@@ -118,8 +118,8 @@ class UnionFindUnionByRankAndPathCompression:
     
     def __getitem__(self, item):
         """
-        Returns the cluster (i.e. the cluster's leader) that the 
-        given item belongs to.
+        Return the cluster (i.e. the cluster's leader) that the given item 
+        belongs to.
         
         Equivalent to UnionFindStructure.find().
         """
@@ -128,8 +128,8 @@ class UnionFindUnionByRankAndPathCompression:
     
     def find(self, item):
         """
-        Returns the cluster (i.e. the cluster's leader) that the 
-        given item belongs to.
+        Return the cluster (i.e. the cluster's leader) that the given item 
+        belongs to.
         
         Equivalent to UnionFindStructure.__getitem__().
         """
@@ -137,17 +137,17 @@ class UnionFindUnionByRankAndPathCompression:
     
     def union(self, leader_A, leader_B):
         """
-        Joins together the two clusters that items leader_A 
-        and leader_B represent.
+        Join together the two clusters that items leader_A and leader_B 
+        represent.
         """
         raise(NotImplementedError)
     
     def num_clusters(self):
-        """Returns the current number of clusters."""
+        """Return the current number of clusters as an int."""
         raise(NotImplementedError)
     
     def items(self):
-        """Returns a set containing all the items in the structure."""
+        """Return a set containing all the items in the structure."""
         raise(NotImplementedError)
 
 
