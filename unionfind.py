@@ -135,15 +135,37 @@ class UnionFindUnionByRankAndPathCompression:
         """
         raise(NotImplementedError)
     
-    def union(self, leader_A, leader_B):
+    def union(self, item_a, item_b):
         """
-        Join together the two clusters that items leader_A and leader_B 
-        represent.
+        Join together the two clusters that items item_a and item_b 
+        belong to.
+        """
+        raise(NotImplementedError)
+    
+    def joined(self, item_a, item_b):
+        """
+        Return True it the items belong to the same cluster; False otherwise.
         """
         raise(NotImplementedError)
     
     def num_clusters(self):
         """Return the current number of clusters as an int."""
+        raise(NotImplementedError)
+    
+    def clusters(self):
+        """
+        Return all clusters as a (real-time) dictview of lists.
+        
+        Caution: 
+        The result is a real-time view of the clusters, i.e. if one first
+        calls this method to get a clusters_view object and then merges two
+        clusters, the original clusters_view object will reflect the change.
+        
+        One can use list(myunionfindobject.clusters()) if they want a list of 
+        lists. BUT this is even more dangerous if there are more unions to 
+        come, because some of the inner lists of the result will change or
+        stop being valid after a union operation.
+        """
         raise(NotImplementedError)
     
     def items(self):
