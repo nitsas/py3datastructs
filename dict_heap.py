@@ -1,7 +1,7 @@
 """
 A pseudo-heap implemented using a dictionary.
 
-Operations:
+Operations:  
 - __len__
 - insert
 - pop / pop_min
@@ -10,16 +10,16 @@ Operations:
 
 I use this until I find the time to implement a Fibonacci heap.
 
-author:
-Christos Nitsas
-(chrisn654)
-(nitsas)
+Author:  
+  Christos Nitsas  
+  (nitsas)  
+  (chrisnitsas)
 
-language:
-Python 3.4
+Language:
+  Python 3(.4)
 
-date:
-August, 2014
+Date:
+  August, 2014
 """
 
 
@@ -33,11 +33,11 @@ class DictHeap:
     I use this until I find the time to implement a Fibonacci heap.
     """
     def __init__(self):
-        """Initializes an empty heap."""
+        """Initialize an empty heap."""
         self.items = {}
     
     def __len__(self):
-        """Returns the number of items in the heap."""
+        """Return the number of items in the heap as an int."""
         return len(self.items)
     
     def insert(self, item, item_key):
