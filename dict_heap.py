@@ -74,3 +74,27 @@ class DictHeap:
                 min_item = item
                 min_key = key
         return min_item
+    
+    def pop(self):
+        """
+        Remove and return the item with the lowest key currently in the heap; 
+        None if the heap is empty.
+        
+        Careful if the heap actually contains items set to None; in that case,
+        this method returning None doesn't necessarily mean the heap is empty.
+        """
+        min_item = None
+        min_key = float('inf')
+        # find min item
+        for item, key in self._items.items():
+            if key < min_key:
+                min_item = item
+                min_key = key
+        # remove min item
+        if min_key < float('inf'):
+            # - We have found a min item; remove it.
+            # - We do the check this way (instead of "if min_item is not 
+            #   None") in case the heap contains items set to None and one 
+            #   of them had the min key.
+            del(self._items[min_item])
+        return min_item
