@@ -59,10 +59,10 @@ class DictHeap:
         """
         self._items[item] = new_item_key
     
-    def pop(self):
+    def peek(self):
         """
-        Remove and return the item with the lowest key currently in the heap; 
-        return None if the heap is empty.
+        Return the item with the lowest key currently in the heap; None if 
+        the heap is empty.
         """
         min_item = None
         min_key = float('inf')
