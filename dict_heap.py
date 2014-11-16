@@ -34,11 +34,11 @@ class DictHeap:
     """
     def __init__(self):
         """Initialize an empty heap."""
-        self.items = {}
+        self._items = {}
     
     def __len__(self):
         """Return the number of items in the heap as an int."""
-        return len(self.items)
+        return len(self._items)
     
     def insert(self, item, item_key):
         """
@@ -49,7 +49,7 @@ class DictHeap:
         
         If the item was already in the heap just update its key.
         """
-        self.items[item] = item_key
+        self._items[item] = item_key
     
     def decrease_key(self, item, new_item_key):
         """
@@ -57,7 +57,7 @@ class DictHeap:
         
         This can even increase the item key.
         """
-        self.items[item] = new_item_key
+        self._items[item] = new_item_key
     
     def pop(self):
         """
@@ -66,7 +66,7 @@ class DictHeap:
         """
         min_item = None
         min_key = float('inf')
-        for item, key in self.items.items():
+        for item, key in self._items.items():
             if key < min_key:
                 min_item = item
                 min_key = key
