@@ -63,6 +63,9 @@ class DictHeap:
         """
         Return the item with the lowest key currently in the heap; None if 
         the heap is empty.
+        
+        Careful if the heap actually contains items set to None; in that case,
+        this method returning None doesn't necessarily mean the heap is empty.
         """
         min_item = None
         min_key = float('inf')
