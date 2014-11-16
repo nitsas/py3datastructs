@@ -23,7 +23,7 @@ Date:
 """
 
 
-__all__ = ["DictHeap"]
+__all__ = ['DictHeap']
 
 
 class DictHeap:
@@ -44,24 +44,30 @@ class DictHeap:
         """
         Insert a new item with key item_key to the heap.
         
+        item -- the item to be inserted
+        item_key -- the item's key
+        
         If the item was already in the heap just update its key.
         """
         self.items[item] = item_key
     
     def decrease_key(self, item, new_item_key):
-        """Update the item's key in the heap."""
+        """
+        Update the item's key in the heap.
+        
+        This can even increase the item key.
+        """
         self.items[item] = new_item_key
     
     def pop(self):
         """
-        Remove and return the item with the lowest key currently in 
-        the heap; None if the heap is empty.
+        Remove and return the item with the lowest key currently in the heap; 
+        return None if the heap is empty.
         """
         min_item = None
-        min_key = float("inf")
+        min_key = float('inf')
         for item, key in self.items.items():
             if key < min_key:
                 min_item = item
                 min_key = key
         return min_item
-
