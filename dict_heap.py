@@ -67,8 +67,12 @@ class DictHeap:
         Careful if the heap actually contains items set to None; in that case,
         this method returning None doesn't necessarily mean the heap is empty.
         """
-        min_item = None
-        min_key = float('inf')
+        try:
+            # set "first" dict item as temporary min
+            min_item, min_key = next(iter(self._items.items()))
+        except StopIteration:
+            raise LookupError('peek into empty heap')
+        # find actual min item
         for item, key in self._items.items():
             if key < min_key:
                 min_item = item
@@ -83,18 +87,11 @@ class DictHeap:
         Careful if the heap actually contains items set to None; in that case,
         this method returning None doesn't necessarily mean the heap is empty.
         """
-        min_item = None
-        min_key = float('inf')
-        # find min item
-        for item, key in self._items.items():
-            if key < min_key:
-                min_item = item
-                min_key = key
+        try:
+            # find min item
+            min_item = self.peek()
+        except LookupError:
+            raise LookupError('pop from empty heap')
         # remove min item
-        if min_key < float('inf'):
-            # - We have found a min item; remove it.
-            # - We do the check this way (instead of "if min_item is not 
-            #   None") in case the heap contains items set to None and one 
-            #   of them had the min key.
-            del(self._items[min_item])
+        del(self._items[min_item])
         return min_item
