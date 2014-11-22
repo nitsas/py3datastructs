@@ -7,9 +7,37 @@ import random
 import binary_heap
 
 
+class HeapifyTestCase(unittest.TestCase):
+    """
+    Test heapify function.
+    """
+    def test_on_random_list(self):
+        """
+        Test heapify on a random list of integers.
+        """
+        list_ = []
+        for _ in range(2000):
+            list_.append(random.randint(-1000, 1000))
+        binary_heap.heapify(list_)
+        for index, node in enumerate(list_):
+            left = 2 * index + 1
+            right = 2 * index + 2
+            if left >= len(list_):
+                break
+            elif right >= len(list_):
+                left_child = list_[left]
+                self.assertTrue(node <= left_child)
+                break
+            else:
+                left_child = list_[left]
+                right_child = list_[right]
+                self.assertTrue(node <= left_child)
+                self.assertTrue(node <= right_child)
+
+
 class BinaryHeapTestCase(unittest.TestCase):
     """
-    Test binary_heap.
+    Test binary_heap.BinaryHeap class.
     """
     def setUp(self):
         self.empty_heap = binary_heap.BinaryHeap()
