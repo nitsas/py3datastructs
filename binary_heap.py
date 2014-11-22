@@ -31,17 +31,29 @@ __all__ = ['BinaryHeap']
 
 class BinaryHeap:
     """
-    A simple binary (min) heap implementation (using a list).
+    A simple binary heap implementation (using a list).
     
-    The lowest valued items are retrieved first (the lowest valued item is
-    the one returned by `sorted(list(items))[0]`). A typical pattern for
-    items is a tuple in the form: (priority_number, data).
+    A typical pattern for items is a tuple in the form: 
+    (priority_number, data).
     """
     
-    def __init__(self):
-        """Initialize an empty (min) heap."""
+    def __init__(self, compare=operator.lt):
+        """
+        Initialize an empty heap.
+        
+        compare -- the callable we'll use to compare items; should accept two
+                   parameters (items); default: operator.lt (i.e. min-heap)
+        
+        By default the lowest valued items are retrieved first (the lowest 
+        valued item is the one returned by `sorted(list(items))[0]`). Users
+        must provide a different `compare` parameter if they want different
+        behavior (e.g. `compare=operator.gt` for a max-heap).
+        
+        A typical pattern for items is a tuple in the form: 
+        (priority_number, data).
+        """
         self._items = []
-        self._less = operator.lt
+        self._less = compare
     
     def __len__(self):
         """Return the number of items in the heap as an int."""
