@@ -26,7 +26,30 @@ Date:
 import operator
 
 
-__all__ = ['BinaryHeap']
+__all__ = ['BinaryHeap', 'heapify']
+
+
+def heapify(list_, compare=operator.lt):
+    """
+    Turn a list into a binary heap in place, in linear time.
+    
+    list_ -- a list of items
+    compare -- the callable we'll use to compare items; should accept two
+               parameters (items) - if the first parameter "wins" it goes
+               higher in the heap; default: operator.lt (i.e. min-heap)
+    
+    With the default `compare` parameter the lowest valued items are placed 
+    "higher" in the heap (the lowest valued item is the one returned by 
+    `sorted(list(items))[0]`). Users must provide a different `compare` 
+    parameter if they want different behavior (e.g. `compare=operator.gt` 
+    for a max-heap).
+        
+    A typical pattern for items is a tuple in the form:
+    (priority_number, data)
+    """
+    n = len(list_)
+    for i in reversed(range(n//2)):
+        _shift_down(list_, i, compare)
 
 
 def _swap(list_, a, b):
@@ -111,10 +134,13 @@ class BinaryHeap:
     (priority_number, data).
     """
     
-    def __init__(self, compare=operator.lt):
+    def __init__(self, list_=None, compare=operator.lt):
         """
         Initialize an empty heap.
         
+        list_ -- a list of initial items; this won't be copied, just wrapped
+                 and heapified; careful: mutating the list outside the heap's 
+                 interface will probably break the heap property
         compare -- the callable we'll use to compare items; should accept two
                    parameters (items); default: operator.lt (i.e. min-heap)
         
@@ -126,8 +152,12 @@ class BinaryHeap:
         A typical pattern for items is a tuple in the form: 
         (priority_number, data)
         """
-        self._items = []
         self._less = compare
+        if list_ is not None:
+            self._items = list_
+            heapify(self._items, compare=self._less)
+        else:
+            self._items = []
     
     def __len__(self):
         """Return the number of items in the heap as an int."""
