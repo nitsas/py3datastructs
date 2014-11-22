@@ -79,6 +79,12 @@ class BinaryHeap:
         left = 2 * node + 1
         # right child
         right = left + 1
+        if left >= len(self._items):
+            return
+        elif right >= len(self._items):
+            if self._less(self._items[left], self._items[node]):
+                self._swap(node, left)
+            return
         while self._less(self._items[left], self._items[node]) or \
               self._less(self._items[right], self._items[node]):
             # the item is *less* than at least one of its children
@@ -92,6 +98,12 @@ class BinaryHeap:
             # update child position pointers
             left = 2 * node + 1
             right = left + 1
+            if left >= len(self._items):
+                return
+            elif right >= len(self._items):
+                if self._less(self._items[left], self._items[node]):
+                    self._swap(node, left)
+                return
     
     def insert(self, item):
         """
