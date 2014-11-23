@@ -94,37 +94,36 @@ def _shift_down(list_, index, less):
     left = 2 * index + 1
     # right child
     right = left + 1
-    # does the node actually have (both) children?
-    if left >= len(list_):
-        # no children
-        return
-    elif right >= len(list_):
-        # only left child
-        if less(list_[left], list_[index]):
-            _swap(list_, index, left)
-        return
-    # node has two children
-    while less(list_[left], list_[index]) or less(list_[right], list_[index]):
+    # get the min child (ignore right if it does not exist)
+    try:
+        if less(list_[right], list_[left]):
+            min_child = right
+        else:
+            min_child = left
+    except IndexError:
+        if left < len(list_):
+            min_child = left
+        else:
+            return
+    while less(list_[min_child], list_[index]):
         # the item is *less* than at least one of its children
         # swap it with the *smallest* of its children
-        if less(list_[left], list_[right]):
-            _swap(list_, index, left)
-            index = left
-        else:
-            _swap(list_, index, right)
-            index = right
+        _swap(list_, index, min_child)
+        index = min_child
         # update child position pointers
         left = 2 * index + 1
         right = left + 1
-        # does the node actually have (both) children?
-        if left >= len(list_):
-            # no children
-            return
-        elif right >= len(list_):
-            # only left child
-            if less(list_[left], list_[index]):
-                _swap(list_, index, left)
-            return
+        # get the min child (ignore right if it does not exist)
+        try:
+            if less(list_[right], list_[left]):
+                min_child = right
+            else:
+                min_child = left
+        except IndexError:
+            if left < len(list_):
+                min_child = left
+            else:
+                return
 
 
 class BinaryHeap:
