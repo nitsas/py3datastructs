@@ -103,7 +103,7 @@ class MedianMaintainer:
             self.lower_half.insert(item)
             # heap sizes must differ at most by one item; else we cannot
             # compute the median using the heaps' top items
-            if len(self.lower_half) > len(self.higher_half + 1):
+            if len(self.lower_half) > len(self.higher_half) + 1:
                 # transfer top item in lower_half to higher_half
                 self.higher_half.insert(self.lower_half.pop())
         elif item > median:
@@ -111,7 +111,7 @@ class MedianMaintainer:
             self.higher_half.insert(item)
             # heap sizes must differ at most by one item; else we cannot
             # compute the median using the heaps' top items
-            if len(self.higher_half) > len(self.lower_half + 1):
+            if len(self.higher_half) > len(self.lower_half) + 1:
                 # transfer top item in higher_half to lower_half
                 self.lower_half.insert(self.higher_half.pop())
         else:
@@ -158,8 +158,8 @@ class MedianMaintainer:
             elif if_even == EvenChoice.Average:
                 # try to return the average of the two "medians"
                 # (takes care of potential overflows)
-                return self.lower_half.peek() + 
-                       (self.higher_half.peek() - 
+                return self.lower_half.peek() + \
+                       (self.higher_half.peek() - \
                         self.lower_half.peek()) / 2
             else: 
                 # if_even == EvenChoice.Lower or unknown option
