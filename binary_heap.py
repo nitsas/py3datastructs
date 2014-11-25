@@ -7,9 +7,6 @@ Operations:
 - pop
 - peek
 
-TODO:
-- Add operations: heapify (maybe in __init__)
-
 Author:  
   Christos Nitsas  
   (nitsas)  
